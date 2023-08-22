@@ -2,7 +2,10 @@
 
 echo "hello world!"
 
-echo "Ramesh:hi"
-echo "Suresh:fine"
-echo "Ramesh:help"
-echo "Suresh:go"
+person1=Ramesh
+person2=Suresh
+
+echo "$person1:hi"
+echo "$person2:fine"
+echo "$person1:help"
+echo "$person2:go"
