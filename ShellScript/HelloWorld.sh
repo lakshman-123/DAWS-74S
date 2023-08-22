@@ -2,8 +2,8 @@
 
 echo "hello world!"
 
-person1=Ramesh
-person2=Suresh
+person1=Ravi
+person2=Mani
 
 echo "$person1:hi"
 echo "$person2:fine"
