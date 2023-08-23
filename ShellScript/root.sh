@@ -8,7 +8,7 @@ then
  exit 1
 fi
 
-yum install -y mysql11
+yum install -y mysql
 
 if [ $? -ne 0 ]
 then
