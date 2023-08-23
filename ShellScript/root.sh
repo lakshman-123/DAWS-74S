@@ -17,3 +17,12 @@ then
 else
  echo "mysql installation is success"
 fi 
+
+yum install postfix -y
+if [ $? -ne 0 ]
+then
+ echo "Error postfix installation failure"
+ exit 1
+else
+ echo "postfix installation is success"
+fi 
