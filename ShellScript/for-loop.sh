@@ -19,17 +19,20 @@ validate() {
     then
       echo " error $2 installation .. $R failure $N"
     else
-      echo " $2 installation .. $G success $N
-}
+      echo " $2 installation .. $G success $N"
+}  
+
 for i in $@
 do
  yum list installed $i
+
  if [ $? -ne 0 ]
  then
-  echo "$i is not installed,let's install it"
-  yum install $i -y &>>$log
-  validate $? "$i"
+   echo "$i is not installed,let's install it"
+   yum install $i -y &>>$log
+   validate $? "$i"
  else
   echo "$Y $i is already installed! $N" 
- fi
+ fi 
+
 done 
