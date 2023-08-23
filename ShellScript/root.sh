@@ -8,4 +8,12 @@ then
  exit 1
 fi
 
-yum install -y mysql
+yum install -y mysql11
+
+if [ $? -ne 0 ]
+then
+ echo "Error mysql installation failure"
+ exit 1
+else
+ echo "mysql installation is success"
+fi 
