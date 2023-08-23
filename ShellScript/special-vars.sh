@@ -7,7 +7,7 @@ validate() {
 }
 
 validate "var1" $var1
-validate  "all vars" $@
+validate  "all vars" "$@"
 validate  "no.of vars" $#
 
 
