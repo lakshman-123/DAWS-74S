@@ -8,7 +8,7 @@ normal="\e[0m"
 validate() {
     if [ $1 -ne 0 ]
 then
- echo -e " $2  is $red failure"
+ echo -e " $2 is $red failure $normal "
  exit 1
 else
  echo -e " $2 is $green success $normal"
@@ -25,5 +25,5 @@ fi
 yum install -y  mysql &>>$logfile
 validate $? "mysql installing"
 
-yum install postfix -y &>>$logfile
+yum install111 postfix -y &>>$logfile
 validate $? "postfix installing"
