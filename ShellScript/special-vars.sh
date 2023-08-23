@@ -10,6 +10,7 @@ validate() {
 validate "var1" $var1
 validate "no.of vars" $#
 validate "script name" $0
-echo "all vars $@"
+validate "all vars" $@
+#echo "all vars $@"
 
 
