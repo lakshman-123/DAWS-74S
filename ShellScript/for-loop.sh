@@ -17,9 +17,9 @@ fi
 validate() {
     if [ $1 -ne 0 ]
     then
-      echo " error $2 installation .. $R failure $N"
+      echo -e " error $2 installation .. $R failure $N"
     else
-      echo " $2 installation .. $G success $N"
+      echo -e " $2 installation .. $G success $N"
     fi  
 }  
 
@@ -33,7 +33,7 @@ do
    yum install $i -y &>>$log
    validate $? "$i"
  else
-  echo "$Y $i is already installed! $N" 
+  echo  -e "$Y $i is already installed! $N" 
  fi 
 
 done 
