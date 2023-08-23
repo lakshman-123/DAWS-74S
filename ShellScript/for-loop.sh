@@ -20,6 +20,7 @@ validate() {
       echo " error $2 installation .. $R failure $N"
     else
       echo " $2 installation .. $G success $N"
+    fi  
 }  
 
 for i in $@
