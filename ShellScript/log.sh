@@ -2,13 +2,15 @@
 Date=$(date +%F:%H:%M:%S)
 logfile=/tmp/$script-$Date.log
 script=$0
+red=\e[31m
+green=\e[32m
 validate() {
     if [ $1 -ne 0 ]
 then
- echo "$2 is failure"
+ echo -e " $red $2 is failure"
  exit 1
 else
- echo "$2 is success"
+ echo -e " $green $2 is success"
 fi 
 
 }
