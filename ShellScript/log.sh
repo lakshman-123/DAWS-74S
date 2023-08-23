@@ -11,7 +11,7 @@ then
  echo -e " $2  is $red failure"
  exit 1
 else
- echo -e " $2 is $green success"
+ echo -e " $2 is $green success $normal"
 fi 
 
 }
