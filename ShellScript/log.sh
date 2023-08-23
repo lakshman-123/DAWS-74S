@@ -8,10 +8,10 @@ normal="\e[0m"
 validate() {
     if [ $1 -ne 0 ]
 then
- echo -e "$red $2  is $normal failure"
+ echo -e " $2  is $red failure"
  exit 1
 else
- echo -e "$green $2 is $normal success"
+ echo -e " $2 is $green success"
 fi 
 
 }
