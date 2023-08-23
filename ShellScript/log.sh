@@ -4,6 +4,7 @@ logfile=/tmp/$script-$Date.log
 script=$0
 red="\e[31m"
 green="\e[32m"
+normal="\e[0m"
 validate() {
     if [ $1 -ne 0 ]
 then
