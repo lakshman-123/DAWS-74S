@@ -11,3 +11,4 @@ do
  echo "Deleting file $line" &>> $logfile
  rm -rf $line
 done <<< $delete
+

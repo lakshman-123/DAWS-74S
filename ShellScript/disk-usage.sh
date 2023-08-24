@@ -21,5 +21,6 @@ do
   fi
 done <<< $disk_usage
 
+echo -e "message: $message "
 
-echo -e "message:$message"
+echo "$message" | mail -s "HIGH DISK USAGE ON" lr944944@gmail.com
