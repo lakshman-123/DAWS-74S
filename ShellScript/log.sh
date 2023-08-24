@@ -6,17 +6,17 @@ red="\e[31m"
 green="\e[32m"
 normal="\e[0m"
 validate() {
-    if [ $1 -ne 0 ]
+if [ $1 -ne 0 ];
 then
  echo -e " $2 is $red failure $normal "
  exit 1
 else
  echo -e " $2 is $green success $normal"
 fi 
-
 }
+
 userid=$(id -u)
-if [ $userid -ne 0 ]
+if [ $userid -ne 0 ];
 then
  echo "This is not root user"
  exit 1

@@ -2,7 +2,7 @@
 
 userid=$(id -u)
 
-if [ $userid -ne 0 ]
+if [ $userid -ne 0 ];
 then
  echo "This is not root user"
  exit 1
@@ -10,7 +10,7 @@ fi
 
 yum install -y mysql
 
-if [ $? -ne 0 ]
+if [ $? -ne 0 ];
 then
  echo "Error mysql installation failure"
  exit 1
@@ -19,7 +19,7 @@ else
 fi 
 
 yum install postfix -y
-if [ $? -ne 0 ]
+if [ $? -ne 0 ];
 then
  echo "Error postfix installation failure"
  exit 1

@@ -9,13 +9,13 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-if [ $userid -ne 0 ] 
+if [ $userid -ne 0 ]; 
 then
   echo -e "$R Error not root user $N"
   exit 1
 fi 
 validate() {
-    if [ $1 -ne 0 ]
+    if [ $1 -ne 0 ];
     then
       echo -e " error $2 installation .. $R failure $N"
       exit 1
@@ -28,7 +28,7 @@ for i in $@
 do
  yum list installed $i
 
- if [ $? -ne 0 ]
+ if [ $? -ne 0 ];
  then
    echo "$i is not installed,let's install it"
    yum install $i -y &>>$log
