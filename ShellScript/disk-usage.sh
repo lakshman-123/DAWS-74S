@@ -23,4 +23,6 @@ done <<< $disk_usage
 
 echo -e "message: $message "
 
-echo "$message" | mail -s "HIGH DISK USAGE ON" lr944944@gmail.com
+#echo "$message" | mail -s "HIGH DISK USAGE ON" lr944944@gmail.com
+mail.sh lr944944@gmail.com "HIGH DISK USAGE" "$message" "DEVOPS TEAM" "High disk usage"
+
