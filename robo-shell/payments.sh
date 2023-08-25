@@ -39,7 +39,7 @@ validate $? "adding user"
 mkdir /app &>> $LOGFILE
 validate $? "making app directory"
 
-curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip &>> $LOGFILE
+curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip
 validate $? "downloading artifacts"
 
 cd /app &>> $LOGFILE
