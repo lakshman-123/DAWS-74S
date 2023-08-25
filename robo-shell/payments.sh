@@ -52,7 +52,7 @@ validate $? "unzipping payment"
 pip3.6 install -r requirements.txt &>> $LOGFILE
 validate $? "installing requirements" 
 
-cp  /home/centos/DAWS-74S/robo-shell/payment.service  /etc/systemd/system/payment.service &>> $LOGFILE
+cp /home/centos/DAWS-74S/robo-shell/payment.service  /etc/systemd/system/payment.service &>> $LOGFILE
 validate $? "creating payment service "
 
 systemctl daemon-reload &>> $LOGFILE
