@@ -17,7 +17,7 @@ then
     exit 1
 fi
 
-validate(){
+VALIDATE(){
     if [ $1 -ne 0 ];
     then
         echo -e "$2 ... $R FAILURE $N"
@@ -27,40 +27,43 @@ validate(){
     fi
 }
 
+yum install python36 gcc python3-devel -y &>>$LOGFILE
 
+VALIDATE $? "Installing python"
 
-yum install python36 gcc python3-devel -y &>> $LOGFILE
-validate $? "installing python"
+useradd roboshop &>>$LOGFILE
 
-useradd roboshop &>> $LOGFILE
-validate $? "adding user"
+mkdir /app  &>>$LOGFILE
 
+curl -L -o /tmp/payment.zip https://roboshop-builds.s3.amazonaws.com/payment.zip &>>$LOGFILE
 
-mkdir /app &>> $LOGFILE
-validate $? "making app directory"
+VALIDATE $? "Downloading artifact"
 
-curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip
-validate $? "downloading artifacts"
+cd /app &>>$LOGFILE
 
-cd /app &>> $LOGFILE
-validate $? "changing app directory"
+VALIDATE $? "Moving to app directory"
 
+unzip /tmp/payment.zip &>>$LOGFILE
 
-unzip /tmp/payment.zip &>> $LOGFILE
-validate $? "unzipping payment"
+VALIDATE $? "unzip artifact"
 
-pip3.6 install -r requirements.txt &>> $LOGFILE
-validate $? "installing requirements" 
+pip3.6 install -r requirements.txt &>>$LOGFILE
 
-cp /home/centos/DAWS-74S/robo-shell/payment.service  /etc/systemd/system/payment.service &>> $LOGFILE
-validate $? "creating payment service "
+VALIDATE $? "Installing dependencies"
 
-systemctl daemon-reload &>> $LOGFILE
-validate $? "daemon-reload payment"
+cp /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service &>>$LOGFILE
 
-systemctl enable payment &>> $LOGFILE
-validate $? "enabling payment"
+VALIDATE $? "copying payment service"
 
-systemctl start payment &>> $LOGFILE
-validate $? "starting payment"
+systemctl daemon-reload &>>$LOGFILE
+
+VALIDATE $? "daemon-reload"
+
+systemctl enable payment  &>>$LOGFILE
+
+VALIDATE $? "enable payment"
+
+systemctl start payment &>>$LOGFILE
+
+VALIDATE $? "starting payment"
 
