@@ -46,9 +46,20 @@ else
     validate $? "adding user"
 fi
 
+#!/bin/bash
 
-mkdir /app &>> LOGFILE
-validate $? "making app directory"
+directory="/app"
+
+if [ -d "$directory" ]; then
+    echo "Directory $directory exists."
+else
+    echo "Directory $directory does not exist."
+    mkdir /app &>> LOGFILE
+    validate $? "making app directory"
+fi
+
+
+
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>> LOGFILE
 validate $? "downloading artifacts"
