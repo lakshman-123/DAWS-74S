@@ -94,14 +94,7 @@ validate $? "enabling cart"
 systemctl start cart &>> $LOGFILE
 validate $? "starting cart"
 
-cp /home/centos/DAWS-74S/robo-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
-validate $? "copying to yum.repos.d"
 
-yum install mongodb-org-shell -y &>> $LOGFILE
-validate $? "installing mongodb-client"
-
-mongo --host mongodb.lakshman.tech </app/schema/cart.js &>> $LOGFILE
-validate $? "loading cart data into mongodb"
 
 
 
