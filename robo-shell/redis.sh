@@ -36,7 +36,7 @@ validate $? "enabling redis package rpm"
 yum install redis -y &>> $LOGFILE
 validate $? "installing redis"
 
-sed -i 's/127.0.0.1/0.0.0.0/' /etc/redis.conf &>> $LOGFILE
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis.conf &>> $LOGFILE
 validate $? "updating default listener"
 
 systemctl enable redis &>> $LOGFILE
