@@ -51,7 +51,7 @@ validate $? "unzipping catalogue"
 npm install &>> LOGFILE
 validate $? "installing npm" 
 
-cp catalogue.service  /etc/systemd/system/catalogue.service
+cp /home/centos/roboshop-shell/catalogue.service  /etc/systemd/system/catalogue.service
 validate $? "creating catalogue service "
 
 systemctl daemon-reload
