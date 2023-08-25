@@ -40,7 +40,7 @@ systemctl start mongod &>> $LOGFILE
 validate $? "starting mongodb"
 
 sed -i 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf &>> $LOGFILE
-validate $? "changing mongodb default port"
+validate $? "changing mongodb default listener"
 
 systemctl restart mongod &>> $LOGFILE
 validate $? "restarting mongodb"
