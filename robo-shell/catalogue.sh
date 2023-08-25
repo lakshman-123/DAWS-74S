@@ -33,16 +33,18 @@ validate $? "setting up repos"
 yum install nodejs -y &>> LOGFILE
 validate $? "installing nodejs"
 
+username="roboshop"
+
 # Search for the username in the /etc/passwd file
 grep -q "^$username:" /etc/passwd
 
 if [ $? -eq 0 ]; then
     echo "User $username exists."
-    useradd roboshop &>> LOGFILE
-    validate $? "adding user"
+    exit 1
 else
     echo "User $username does not exist."
-    exit 1
+    useradd roboshop &>> LOGFILE
+    validate $? "adding user"
 fi
 
 
