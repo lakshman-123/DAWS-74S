@@ -40,7 +40,6 @@ grep -q "^$username:" /etc/passwd
 
 if [ $? -eq 0 ]; then
     echo "User $username exists."
-    exit 1
 else
     echo "User $username does not exist."
     useradd roboshop &>> LOGFILE
