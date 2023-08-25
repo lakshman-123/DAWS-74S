@@ -63,6 +63,9 @@ validate $? "enabling shipping"
 systemctl start shipping &>> $LOGFILE
 validate $? "starting shipping"
 
+sudo yum install mysql &>> $LOGFILE
+validate $? "installing client mysql"
+
 mysql -h mysql.lakshman.tech -uroot -pRoboShop@1 < /app/schema/shipping.sql &>> $LOGFILE
 validate $? "loading schema shipping"
 
