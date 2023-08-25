@@ -53,7 +53,7 @@ validate $? "unzipping catalogue"
 npm install &>> $LOGFILE
 validate $? "installing npm" 
 
-cp /home/centos/DAWS-74S/roboshop-shell/catalogue.service  /etc/systemd/system/catalogue.service &>> $LOGFILE
+cp /home/centos/DAWS-74S/robo-shell/catalogue.service  /etc/systemd/system/catalogue.service &>> $LOGFILE
 validate $? "creating catalogue service "
 
 systemctl daemon-reload &>> $LOGFILE
@@ -65,7 +65,7 @@ validate $? "enabling catalogue"
 systemctl start catalogue &>> $LOGFILE
 validate $? "starting catalogue"
 
-cp /home/centos/DAWS-74S/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
+cp /home/centos/DAWS-74S/robo-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 validate $? "copying to yum.repos.d"
 
 yum install mongodb-org-shell -y &>> $LOGFILE
