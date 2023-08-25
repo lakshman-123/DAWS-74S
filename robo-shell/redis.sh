@@ -17,7 +17,7 @@ then
     exit 1
 fi
 
-validate(){
+VALIDATE(){
     if [ $1 -ne 0 ];
     then
         echo -e "$2 ... $R FAILURE $N"
@@ -27,23 +27,30 @@ validate(){
     fi
 }
 
-yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>> $LOGFILE
-validate $? "installing redis rpm"
 
-yum module enable redis:remi-6.2 -y &>> $LOGFILE
-validate $? "enabling redis package rpm"
+yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>$LOGFILE
 
-yum install redis -y &>> $LOGFILE
-validate $? "installing redis"
+VALIDATE $? "Installing Redis repo"
 
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis.conf &>> $LOGFILE
-validate $? "updating default listener"
+yum module enable redis:remi-6.2 -y &>>$LOGFILE
 
-systemctl enable redis &>> $LOGFILE
-validate $? "enabling redis"
+VALIDATE $? "Enabling Redis 6.2"
 
-systemctl start redis &>> $LOGFILE
-validate $? "starting redis"
+yum install redis -y &>>$LOGFILE
+
+VALIDATE $? "Installing Redis 6.2"
+
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/redis.conf /etc/redis/redis.conf &>>$LOGFILE
+
+VALIDATE $? "Allowing Remote connections to redis"
+
+systemctl enable redis &>>$LOGFILE
+
+VALIDATE $? "Enabling Redis"
+
+systemctl start redis &>>$LOGFILE
+
+VALIDATE $? "Starting Redis"
 
 
 
