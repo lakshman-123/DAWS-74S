@@ -27,39 +27,18 @@ validate(){
     fi
 }
 
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>> LOGFILE
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>> $LOGFILE
 validate $? "setting up repos"
 
-yum install nodejs -y &>> LOGFILE
+yum install nodejs -y &>> $LOGFILE
 validate $? "installing nodejs"
 
-username="roboshop"
-
-# Search for the username in the /etc/passwd file
-grep -q "^$username:" /etc/passwd
-
-if [ $? -eq 0 ]; then
-    echo "User $username exists."
-else
-    echo "User $username does not exist."
-    useradd roboshop &>> LOGFILE
-    validate $? "adding user"
-fi
-
-#!/bin/bash
-
-directory="/app"
-
-if [ -d "$directory" ]; then
-    echo "Directory $directory exists."
-else
-    echo "Directory $directory does not exist."
-    mkdir /app &>> LOGFILE
-    validate $? "making app directory"
-fi
+useradd roboshop &>> $LOGFILE
+validate $? "adding user"
 
 
-
+mkdir /app &>> $LOGFILE
+validate $? "making app directory"
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>> LOGFILE
 validate $? "downloading artifacts"
@@ -67,31 +46,32 @@ validate $? "downloading artifacts"
 cd /app &>> $LOGFILE
 validate $? "changing app directory"
 
-unzip /tmp/catalogue.zip &>> LOGFILE
+
+unzip /tmp/catalogue.zip &>> $LOGFILE
 validate $? "unzipping catalogue"
 
-npm install &>> LOGFILE
+npm install &>> $LOGFILE
 validate $? "installing npm" 
 
-cp /home/centos/roboshop-shell/catalogue.service  /etc/systemd/system/catalogue.service
+cp /home/centos/DAWS-74S/roboshop-shell/catalogue.service  /etc/systemd/system/catalogue.service &>> $LOGFILE
 validate $? "creating catalogue service "
 
-systemctl daemon-reload
+systemctl daemon-reload &>> $LOGFILE
 validate $? "daemon-reload catalogue"
 
-systemctl enable catalogue
+systemctl enable catalogue &>> $LOGFILE
 validate $? "enabling catalogue"
 
-systemctl start catalogue
+systemctl start catalogue &>> $LOGFILE
 validate $? "starting catalogue"
 
-cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+cp /home/centos/DAWS-74S/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 validate $? "copying to yum.repos.d"
 
-yum install mongodb-org-shell -y
+yum install mongodb-org-shell -y &>> $LOGFILE
 validate $? "installing mongodb-client"
 
-mongo --host catalogue.lakshman.tech </app/schema/catalogue.js
+mongo --host mongodb.lakshman.tech </app/schema/catalogue.js &>> $LOGFILE
 validate $? "loading catalogue data into mongodb"
 
 
